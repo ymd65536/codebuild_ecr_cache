@@ -164,6 +164,8 @@ CodeBuildのリモートキャッシュとしてECRを利用する場合、キ�
 
 ## 参考
 
+- [Reduce Docker image build time on AWS CodeBuild using Amazon ECR as a remote cache](https://aws.amazon.com/jp/blogs/devops/reduce-docker-image-build-time-on-aws-codebuild-using-amazon-ecr-as-a-remote-cache/)
+
 ## AWS CLI インストールと SSO ログイン手順 (Linux環境)
 
 このガイドでは、Linux環境でAWS CLIをインストールし、AWS SSOを使用してログインするまでの手順を説明します。
