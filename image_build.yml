@@ -9,7 +9,7 @@ Parameters:
   
   ImageRepoName:
     Type: String
-    Default: 'ecs-express-mode'
+    Default: 'build-cache-repo'
     Description: ECR Repository Name
 
 Resources:
