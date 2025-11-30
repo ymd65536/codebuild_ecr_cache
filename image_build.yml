@@ -4,18 +4,13 @@ Description: 'CodeBuild Project for Public GitHub Repository'
 Parameters:
   GitHubRepositoryUrl:
     Type: String
-    Default: 'https://github.com/ymd65536/ECSExpressMode.git'
+    Default: 'https://github.com/ymd65536/codebuild_ecr_cache.git'
     Description: Public GitHub Repository URL
   
   ImageRepoName:
     Type: String
     Default: 'ecs-express-mode'
     Description: ECR Repository Name
-  
-  ContainerName:
-    Type: String
-    Default: 'app'
-    Description: Container Name for ECS
 
 Resources:
   # CodeBuild用のサービスロール
@@ -102,8 +97,10 @@ Resources:
             Value: !Ref AWS::AccountId
           - Name: IMAGE_REPO_NAME
             Value: !Ref ImageRepoName
-          - Name: CONTAINER_NAME
-            Value: !Ref ContainerName
+      Cache:
+        Type: LOCAL
+        Modes:
+          - LOCAL_DOCKER_LAYER_CACHE           
       Source:
         Type: GITHUB
         Location: !Ref GitHubRepositoryUrl
