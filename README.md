@@ -1,4 +1,4 @@
-# 【AWS】検証！Amazon ECRをCodeBuildのリモートキャッシュにする方法
+# 【AWS】検証！Amazon ECRをCodeBuildのリモートキャッシュとして利用する
 
 ## はじめに
 
