@@ -14,7 +14,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --target app --cache-to type=registry,ref=${REPOSITORY_URI}:${IMAGE_TAG},image-manifest=true --cache-from type=registry,ref=${REPOSITORY_URI}:${IMAGE_TAG} --tag ${REPOSITORY_URI}:${IMAGE_TAG} --builder=containerd .
+      - docker build --cache-to type=registry,ref=${REPOSITORY_URI}:${IMAGE_TAG},image-manifest=true --cache-from type=registry,ref=${REPOSITORY_URI}:${IMAGE_TAG} --tag ${REPOSITORY_URI}:${IMAGE_TAG} --builder=containerd .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:${IMAGE_TAG}
   post_build:
     commands:
