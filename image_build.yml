@@ -97,6 +97,8 @@ Resources:
             Value: !Ref AWS::AccountId
           - Name: IMAGE_REPO_NAME
             Value: !Ref ImageRepoName
+          - Name: IMAGE_TAG
+            Value: 'latest'
       Cache:
         Type: LOCAL
         Modes:
