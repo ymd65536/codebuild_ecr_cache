@@ -89,6 +89,40 @@ CodBuildでビルド時間を確保するということはより多くの課金
 
 それでは実際にAmazon ECRをCodeBuildのリモートキャッシュとして利用する方法をハンズオンで確認していきます。
 
+### リポジトリをクローンする
+
+セットアップするために、リポジトリをクローンします。
+
+```bash
+git clone https://github.com/ymd65536/CodebuildEcrCache.git
+```
+
+このリポジトリに今回のセットアップに必要なファイルが含まれています。
+ディレクトリを変更します。
+
+```bash
+cd CodebuildEcrCache
+```
+
+## CodeBuildを構築してイメージをビルド
+
+ではここから、コンテナイメージをCodeBuildでビルドしてECRにプッシュする手順を紹介します。
+今回はCloudFormationテンプレートを使用してCodeBuildのプロジェクトを作成し、ビルドを実行します。
+
+以下のコマンドでCloudFormationスタックをデプロイします。
+
+```bash
+aws cloudformation deploy --template-file image_build.yml --stack-name image_build --capabilities CAPABILITY_NAMED_IAM
+```
+
+スタックのデプロイが完了したら、以下のコマンドでビルドを開始します。`BUILD_ID`という変数の後ろから最後までのコマンドはビルドの進捗をポーリングしてステータスを表示するためのものです。
+
+```bash
+aws codebuild start-build --project-name image-build-stack-build-project --region ap-northeast-1 && BUILD_ID="image-build-stack-build-project:e8aeb764-5c76-480c-87e5-3a1183944c69" && while true; do STATUS=$(aws codebuild batch-get-builds --ids "$BUILD_ID" --region ap-northeast-1 --query 'builds[0].buildStatus' --output text); echo "Build status: $STATUS"; if [ "$STATUS" != "IN_PROGRESS" ]; then break; fi; sleep 10; done && echo "Final status: $STATUS"
+```
+
+※2回ほどビルドを試してみてください。
+
 ### ビルドログを確認する
 
 では、実際にCodeBuildのビルドログを確認していきます。
