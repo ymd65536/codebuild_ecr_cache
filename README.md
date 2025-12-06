@@ -94,14 +94,14 @@ CodBuildでビルド時間を確保するということはより多くの課金
 セットアップするために、リポジトリをクローンします。
 
 ```bash
-git clone https://github.com/ymd65536/CodebuildEcrCache.git
+git clone https://github.com/ymd65536/CodeBuildEcrCache.git
 ```
 
 このリポジトリに今回のセットアップに必要なファイルが含まれています。
 ディレクトリを変更します。
 
 ```bash
-cd CodebuildEcrCache
+cd CodeBuildEcrCache
 ```
 
 ## CodeBuildを構築してイメージをビルド
